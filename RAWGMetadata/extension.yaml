@@ -1,0 +1,6 @@
+﻿Name: RAWG metadata provider
+Author: Spektor
+Version: 1.0
+Module: RAWGMetadata.dll
+Type: MetadataProvider
+Icon: Resources\launchbox.ico

@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rawg", "Rawg\Rawg.csproj", "{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAWGMetadata", "RAWGMetadata\RAWGMetadata.csproj", "{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70A70BDB-24B4-49EA-A39D-C38B1B427BFB}
+	EndGlobalSection
+EndGlobal
