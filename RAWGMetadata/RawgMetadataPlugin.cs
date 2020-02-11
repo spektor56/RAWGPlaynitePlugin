@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace RAWGMetadata
 {
@@ -18,15 +19,42 @@ namespace RAWGMetadata
             Settings = new RawgMetadataSettings(this);
             
         }
-        public override string Name => throw new NotImplementedException();
 
-        public override List<MetadataField> SupportedFields => throw new NotImplementedException();
+        public override ISettings GetSettings(bool firstRunSettings)
+        {
+            return Settings;
+        }
 
-        public override Guid Id => throw new NotImplementedException();
+        public override UserControl GetSettingsView(bool firstRunView)
+        {
+            return new RawgMetadataSettingsView(this);
+        }
+
+        public override string Name { get; } = "RAWG";
+
+        public override List<MetadataField> SupportedFields { get; } = new List<MetadataField>
+        {
+            MetadataField.Name,
+            MetadataField.Genres,
+            MetadataField.ReleaseDate,
+            MetadataField.Developers,
+            MetadataField.Publishers,
+            //MetadataField.Tags,
+            MetadataField.Description,
+            MetadataField.Links,
+            MetadataField.CriticScore,
+            MetadataField.CommunityScore,
+            MetadataField.Icon,
+            MetadataField.CoverImage,
+            MetadataField.BackgroundImage
+
+        };
+
+        public override Guid Id => new Guid();
 
         public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)
         {
-            throw new NotImplementedException();
+            return new RawgLazyMetadataProvider(options, this);
         }
     }
 }
