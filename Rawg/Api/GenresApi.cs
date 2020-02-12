@@ -13,10 +13,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using RestSharp;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Rawg.Client;
+using Rawg.Model;
 
-namespace IO.Swagger.Api
+namespace Rawg.Api
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
@@ -30,12 +30,12 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>InlineResponse2008</returns>
-        InlineResponse2008 GenresList (string ordering = null, int? page = null, int? pageSize = null);
+        InlineResponse2008 GenresList(string ordering = null, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// Get a list of video game genres.
@@ -43,22 +43,22 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2008</returns>
-        ApiResponse<InlineResponse2008> GenresListWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null);
+        ApiResponse<InlineResponse2008> GenresListWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null);
         /// <summary>
         /// Get details of the genre.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>GenreSingle</returns>
-        GenreSingle GenresRead (int? id);
+        GenreSingle GenresRead(int? id);
 
         /// <summary>
         /// Get details of the genre.
@@ -66,10 +66,10 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>ApiResponse of GenreSingle</returns>
-        ApiResponse<GenreSingle> GenresReadWithHttpInfo (int? id);
+        ApiResponse<GenreSingle> GenresReadWithHttpInfo(int? id);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -78,12 +78,12 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of InlineResponse2008</returns>
-        System.Threading.Tasks.Task<InlineResponse2008> GenresListAsync (string ordering = null, int? page = null, int? pageSize = null);
+        System.Threading.Tasks.Task<InlineResponse2008> GenresListAsync(string ordering = null, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// Get a list of video game genres.
@@ -91,22 +91,22 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2008)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GenresListAsyncWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GenresListAsyncWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null);
         /// <summary>
         /// Get details of the genre.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>Task of GenreSingle</returns>
-        System.Threading.Tasks.Task<GenreSingle> GenresReadAsync (int? id);
+        System.Threading.Tasks.Task<GenreSingle> GenresReadAsync(int? id);
 
         /// <summary>
         /// Get details of the genre.
@@ -114,10 +114,10 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>Task of ApiResponse (GenreSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenreSingle>> GenresReadAsyncWithHttpInfo (int? id);
+        System.Threading.Tasks.Task<ApiResponse<GenreSingle>> GenresReadAsyncWithHttpInfo(int? id);
         #endregion Asynchronous Operations
     }
 
@@ -126,17 +126,17 @@ namespace IO.Swagger.Api
     /// </summary>
     public partial class GenresApi : IGenresApi
     {
-        private IO.Swagger.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GenresApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public GenresApi(String basePath)
+        public GenresApi(string basePath)
         {
-            this.Configuration = new IO.Swagger.Client.Configuration { BasePath = basePath };
+            Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -145,23 +145,23 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public GenresApi(IO.Swagger.Client.Configuration configuration = null)
+        public GenresApi(Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
-                this.Configuration = IO.Swagger.Client.Configuration.Default;
+                Configuration = Configuration.Default;
             else
-                this.Configuration = configuration;
+                Configuration = configuration;
 
-            ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public String GetBasePath()
+        public string GetBasePath()
         {
-            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <value>The base path</value>
         [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
-        public void SetBasePath(String basePath)
+        public void SetBasePath(string basePath)
         {
             // do nothing
         }
@@ -178,12 +178,12 @@ namespace IO.Swagger.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IO.Swagger.Client.Configuration Configuration {get; set;}
+        public Configuration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public IO.Swagger.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -201,9 +201,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public IDictionary<String, String> DefaultHeader()
+        public IDictionary<string, string> DefaultHeader()
         {
-            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
+            return new ReadOnlyDictionary<string, string>(Configuration.DefaultHeader);
         }
 
         /// <summary>
@@ -215,67 +215,67 @@ namespace IO.Swagger.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            this.Configuration.AddDefaultHeader(key, value);
+            Configuration.AddDefaultHeader(key, value);
         }
 
         /// <summary>
         /// Get a list of video game genres. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>InlineResponse2008</returns>
-        public InlineResponse2008 GenresList (string ordering = null, int? page = null, int? pageSize = null)
+        public InlineResponse2008 GenresList(string ordering = null, int? page = null, int? pageSize = null)
         {
-             ApiResponse<InlineResponse2008> localVarResponse = GenresListWithHttpInfo(ordering, page, pageSize);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2008> localVarResponse = GenresListWithHttpInfo(ordering, page, pageSize);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a list of video game genres. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2008</returns>
-        public ApiResponse< InlineResponse2008 > GenresListWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null)
+        public ApiResponse<InlineResponse2008> GenresListWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null)
         {
 
             var localVarPath = "/genres";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (ordering != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
-            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
-            if (pageSize != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (ordering != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -285,68 +285,68 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2008) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
+                (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
         }
 
         /// <summary>
         /// Get a list of video game genres. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of InlineResponse2008</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2008> GenresListAsync (string ordering = null, int? page = null, int? pageSize = null)
+        public async System.Threading.Tasks.Task<InlineResponse2008> GenresListAsync(string ordering = null, int? page = null, int? pageSize = null)
         {
-             ApiResponse<InlineResponse2008> localVarResponse = await GenresListAsyncWithHttpInfo(ordering, page, pageSize);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2008> localVarResponse = await GenresListAsyncWithHttpInfo(ordering, page, pageSize);
+            return localVarResponse.Data;
 
         }
 
         /// <summary>
         /// Get a list of video game genres. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2008)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GenresListAsyncWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GenresListAsyncWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null)
         {
 
             var localVarPath = "/genres";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (ordering != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
-            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
-            if (pageSize != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (ordering != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -356,64 +356,64 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2008) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
+                (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
         }
 
         /// <summary>
         /// Get details of the genre. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>GenreSingle</returns>
-        public GenreSingle GenresRead (int? id)
+        public GenreSingle GenresRead(int? id)
         {
-             ApiResponse<GenreSingle> localVarResponse = GenresReadWithHttpInfo(id);
-             return localVarResponse.Data;
+            ApiResponse<GenreSingle> localVarResponse = GenresReadWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get details of the genre. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>ApiResponse of GenreSingle</returns>
-        public ApiResponse< GenreSingle > GenresReadWithHttpInfo (int? id)
+        public ApiResponse<GenreSingle> GenresReadWithHttpInfo(int? id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling GenresApi->GenresRead");
 
             var localVarPath = "/genres/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -423,65 +423,65 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<GenreSingle>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GenreSingle) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(GenreSingle)));
+                (GenreSingle)Configuration.ApiClient.Deserialize(localVarResponse, typeof(GenreSingle)));
         }
 
         /// <summary>
         /// Get details of the genre. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>Task of GenreSingle</returns>
-        public async System.Threading.Tasks.Task<GenreSingle> GenresReadAsync (int? id)
+        public async System.Threading.Tasks.Task<GenreSingle> GenresReadAsync(int? id)
         {
-             ApiResponse<GenreSingle> localVarResponse = await GenresReadAsyncWithHttpInfo(id);
-             return localVarResponse.Data;
+            ApiResponse<GenreSingle> localVarResponse = await GenresReadAsyncWithHttpInfo(id);
+            return localVarResponse.Data;
 
         }
 
         /// <summary>
         /// Get details of the genre. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Genre.</param>
         /// <returns>Task of ApiResponse (GenreSingle)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenreSingle>> GenresReadAsyncWithHttpInfo (int? id)
+        public async System.Threading.Tasks.Task<ApiResponse<GenreSingle>> GenresReadAsyncWithHttpInfo(int? id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling GenresApi->GenresRead");
 
             var localVarPath = "/genres/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -491,7 +491,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<GenreSingle>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GenreSingle) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(GenreSingle)));
+                (GenreSingle)Configuration.ApiClient.Deserialize(localVarResponse, typeof(GenreSingle)));
         }
 
     }

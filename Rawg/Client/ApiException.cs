@@ -10,7 +10,7 @@
 
 using System;
 
-namespace IO.Swagger.Client
+namespace Rawg.Client
 {
     /// <summary>
     /// API Exception
@@ -32,7 +32,7 @@ namespace IO.Swagger.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiException"/> class.
         /// </summary>
-        public ApiException() {}
+        public ApiException() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiException"/> class.
@@ -41,7 +41,7 @@ namespace IO.Swagger.Client
         /// <param name="message">Error message.</param>
         public ApiException(int errorCode, string message) : base(message)
         {
-            this.ErrorCode = errorCode;
+            ErrorCode = errorCode;
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace IO.Swagger.Client
         /// <param name="errorContent">Error content.</param>
         public ApiException(int errorCode, string message, dynamic errorContent = null) : base(message)
         {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
+            ErrorCode = errorCode;
+            ErrorContent = errorContent;
         }
     }
 

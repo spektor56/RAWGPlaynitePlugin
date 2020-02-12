@@ -14,8 +14,8 @@ OpenAPI spec version: v1.0
     <ProjectGuid>{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IO.Swagger</RootNamespace>
-    <AssemblyName>IO.Swagger</AssemblyName>
+    <RootNamespace>Rawg</RootNamespace>
+    <AssemblyName>Rawg</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

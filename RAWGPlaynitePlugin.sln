@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rawg", "Rawg\Rawg.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAWGMetadata", "RAWGMetadata\RAWGMetadata.csproj", "{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawgTestApp", "RawgTestApp\RawgTestApp.csproj", "{6D0B68F3-D63A-4473-A947-5273A9475D57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6924EE8E-9CCF-42FC-8841-EC83DE500CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D0B68F3-D63A-4473-A947-5273A9475D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D0B68F3-D63A-4473-A947-5273A9475D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D0B68F3-D63A-4473-A947-5273A9475D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D0B68F3-D63A-4473-A947-5273A9475D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Rawg.Api;
+using Rawg.Client;
+using Rawg.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace RAWGMetadata
 {
@@ -31,6 +35,16 @@ namespace RAWGMetadata
         {
             _plugin = plugin;
             InitializeComponent();
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+            
+            var platformApi = new PlatformsApi();
+            
+            var platforms = await platformApi.PlatformsListAsync();
+            
         }
     }
 }

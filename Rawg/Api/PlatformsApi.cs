@@ -13,10 +13,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using RestSharp;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Rawg.Client;
+using Rawg.Model;
 
-namespace IO.Swagger.Api
+namespace Rawg.Api
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
@@ -30,12 +30,12 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>InlineResponse2009</returns>
-        InlineResponse2009 PlatformsList (string ordering = null, int? page = null, int? pageSize = null);
+        InlineResponse2009 PlatformsList(string ordering = null, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// Get a list of video game platforms.
@@ -43,24 +43,24 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2009</returns>
-        ApiResponse<InlineResponse2009> PlatformsListWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null);
+        ApiResponse<InlineResponse2009> PlatformsListWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null);
         /// <summary>
         /// Get a list of parent platforms.
         /// </summary>
         /// <remarks>
         /// For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>InlineResponse20010</returns>
-        InlineResponse20010 PlatformsListsParentsList (string ordering = null, int? page = null, int? pageSize = null);
+        InlineResponse20010 PlatformsListsParentsList(string ordering = null, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// Get a list of parent platforms.
@@ -68,22 +68,22 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20010</returns>
-        ApiResponse<InlineResponse20010> PlatformsListsParentsListWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null);
+        ApiResponse<InlineResponse20010> PlatformsListsParentsListWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null);
         /// <summary>
         /// Get details of the platform.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>PlatformSingle</returns>
-        PlatformSingle PlatformsRead (int? id);
+        PlatformSingle PlatformsRead(int? id);
 
         /// <summary>
         /// Get details of the platform.
@@ -91,10 +91,10 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>ApiResponse of PlatformSingle</returns>
-        ApiResponse<PlatformSingle> PlatformsReadWithHttpInfo (int? id);
+        ApiResponse<PlatformSingle> PlatformsReadWithHttpInfo(int? id);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -103,12 +103,12 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of InlineResponse2009</returns>
-        System.Threading.Tasks.Task<InlineResponse2009> PlatformsListAsync (string ordering = null, int? page = null, int? pageSize = null);
+        System.Threading.Tasks.Task<InlineResponse2009> PlatformsListAsync(string ordering = null, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// Get a list of video game platforms.
@@ -116,24 +116,24 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2009)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> PlatformsListAsyncWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> PlatformsListAsyncWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null);
         /// <summary>
         /// Get a list of parent platforms.
         /// </summary>
         /// <remarks>
         /// For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of InlineResponse20010</returns>
-        System.Threading.Tasks.Task<InlineResponse20010> PlatformsListsParentsListAsync (string ordering = null, int? page = null, int? pageSize = null);
+        System.Threading.Tasks.Task<InlineResponse20010> PlatformsListsParentsListAsync(string ordering = null, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// Get a list of parent platforms.
@@ -141,22 +141,22 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20010)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> PlatformsListsParentsListAsyncWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> PlatformsListsParentsListAsyncWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null);
         /// <summary>
         /// Get details of the platform.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>Task of PlatformSingle</returns>
-        System.Threading.Tasks.Task<PlatformSingle> PlatformsReadAsync (int? id);
+        System.Threading.Tasks.Task<PlatformSingle> PlatformsReadAsync(int? id);
 
         /// <summary>
         /// Get details of the platform.
@@ -164,10 +164,10 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>Task of ApiResponse (PlatformSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlatformSingle>> PlatformsReadAsyncWithHttpInfo (int? id);
+        System.Threading.Tasks.Task<ApiResponse<PlatformSingle>> PlatformsReadAsyncWithHttpInfo(int? id);
         #endregion Asynchronous Operations
     }
 
@@ -176,17 +176,17 @@ namespace IO.Swagger.Api
     /// </summary>
     public partial class PlatformsApi : IPlatformsApi
     {
-        private IO.Swagger.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlatformsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public PlatformsApi(String basePath)
+        public PlatformsApi(string basePath)
         {
-            this.Configuration = new IO.Swagger.Client.Configuration { BasePath = basePath };
+            Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -195,23 +195,23 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public PlatformsApi(IO.Swagger.Client.Configuration configuration = null)
+        public PlatformsApi(Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
-                this.Configuration = IO.Swagger.Client.Configuration.Default;
+                Configuration = Configuration.Default;
             else
-                this.Configuration = configuration;
+                Configuration = configuration;
 
-            ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public String GetBasePath()
+        public string GetBasePath()
         {
-            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <value>The base path</value>
         [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
-        public void SetBasePath(String basePath)
+        public void SetBasePath(string basePath)
         {
             // do nothing
         }
@@ -228,12 +228,12 @@ namespace IO.Swagger.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IO.Swagger.Client.Configuration Configuration {get; set;}
+        public Configuration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public IO.Swagger.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -251,9 +251,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public IDictionary<String, String> DefaultHeader()
+        public IDictionary<string, string> DefaultHeader()
         {
-            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
+            return new ReadOnlyDictionary<string, string>(Configuration.DefaultHeader);
         }
 
         /// <summary>
@@ -265,67 +265,67 @@ namespace IO.Swagger.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            this.Configuration.AddDefaultHeader(key, value);
+            Configuration.AddDefaultHeader(key, value);
         }
 
         /// <summary>
         /// Get a list of video game platforms. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>InlineResponse2009</returns>
-        public InlineResponse2009 PlatformsList (string ordering = null, int? page = null, int? pageSize = null)
+        public InlineResponse2009 PlatformsList(string ordering = null, int? page = null, int? pageSize = null)
         {
-             ApiResponse<InlineResponse2009> localVarResponse = PlatformsListWithHttpInfo(ordering, page, pageSize);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2009> localVarResponse = PlatformsListWithHttpInfo(ordering, page, pageSize);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a list of video game platforms. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2009</returns>
-        public ApiResponse< InlineResponse2009 > PlatformsListWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null)
+        public ApiResponse<InlineResponse2009> PlatformsListWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null)
         {
 
             var localVarPath = "/platforms";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (ordering != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
-            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
-            if (pageSize != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (ordering != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -335,68 +335,68 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<InlineResponse2009>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2009) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
+                (InlineResponse2009)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
         }
 
         /// <summary>
         /// Get a list of video game platforms. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of InlineResponse2009</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2009> PlatformsListAsync (string ordering = null, int? page = null, int? pageSize = null)
+        public async System.Threading.Tasks.Task<InlineResponse2009> PlatformsListAsync(string ordering = null, int? page = null, int? pageSize = null)
         {
-             ApiResponse<InlineResponse2009> localVarResponse = await PlatformsListAsyncWithHttpInfo(ordering, page, pageSize);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2009> localVarResponse = await PlatformsListAsyncWithHttpInfo(ordering, page, pageSize);
+            return localVarResponse.Data;
 
         }
 
         /// <summary>
         /// Get a list of video game platforms. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2009)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> PlatformsListAsyncWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> PlatformsListAsyncWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null)
         {
 
             var localVarPath = "/platforms";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (ordering != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
-            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
-            if (pageSize != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (ordering != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -406,67 +406,67 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<InlineResponse2009>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2009) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
+                (InlineResponse2009)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
         }
 
         /// <summary>
         /// Get a list of parent platforms. For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>InlineResponse20010</returns>
-        public InlineResponse20010 PlatformsListsParentsList (string ordering = null, int? page = null, int? pageSize = null)
+        public InlineResponse20010 PlatformsListsParentsList(string ordering = null, int? page = null, int? pageSize = null)
         {
-             ApiResponse<InlineResponse20010> localVarResponse = PlatformsListsParentsListWithHttpInfo(ordering, page, pageSize);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20010> localVarResponse = PlatformsListsParentsListWithHttpInfo(ordering, page, pageSize);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a list of parent platforms. For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20010</returns>
-        public ApiResponse< InlineResponse20010 > PlatformsListsParentsListWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null)
+        public ApiResponse<InlineResponse20010> PlatformsListsParentsListWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null)
         {
 
             var localVarPath = "/platforms/lists/parents";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (ordering != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
-            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
-            if (pageSize != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (ordering != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -476,68 +476,68 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20010) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
+                (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
         }
 
         /// <summary>
         /// Get a list of parent platforms. For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of InlineResponse20010</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20010> PlatformsListsParentsListAsync (string ordering = null, int? page = null, int? pageSize = null)
+        public async System.Threading.Tasks.Task<InlineResponse20010> PlatformsListsParentsListAsync(string ordering = null, int? page = null, int? pageSize = null)
         {
-             ApiResponse<InlineResponse20010> localVarResponse = await PlatformsListsParentsListAsyncWithHttpInfo(ordering, page, pageSize);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20010> localVarResponse = await PlatformsListsParentsListAsyncWithHttpInfo(ordering, page, pageSize);
+            return localVarResponse.Data;
 
         }
 
         /// <summary>
         /// Get a list of parent platforms. For instance, for PS2 and PS4 the “parent platform” is PlayStation.
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="ordering">Which field to use when ordering the results. (optional)</param>
         /// <param name="page">A page number within the paginated result set. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20010)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> PlatformsListsParentsListAsyncWithHttpInfo (string ordering = null, int? page = null, int? pageSize = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> PlatformsListsParentsListAsyncWithHttpInfo(string ordering = null, int? page = null, int? pageSize = null)
         {
 
             var localVarPath = "/platforms/lists/parents";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (ordering != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
-            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
-            if (pageSize != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (ordering != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ordering", ordering)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -547,64 +547,64 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20010) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
+                (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
         }
 
         /// <summary>
         /// Get details of the platform. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>PlatformSingle</returns>
-        public PlatformSingle PlatformsRead (int? id)
+        public PlatformSingle PlatformsRead(int? id)
         {
-             ApiResponse<PlatformSingle> localVarResponse = PlatformsReadWithHttpInfo(id);
-             return localVarResponse.Data;
+            ApiResponse<PlatformSingle> localVarResponse = PlatformsReadWithHttpInfo(id);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get details of the platform. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>ApiResponse of PlatformSingle</returns>
-        public ApiResponse< PlatformSingle > PlatformsReadWithHttpInfo (int? id)
+        public ApiResponse<PlatformSingle> PlatformsReadWithHttpInfo(int? id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling PlatformsApi->PlatformsRead");
 
             var localVarPath = "/platforms/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -614,65 +614,65 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<PlatformSingle>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PlatformSingle) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlatformSingle)));
+                (PlatformSingle)Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlatformSingle)));
         }
 
         /// <summary>
         /// Get details of the platform. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>Task of PlatformSingle</returns>
-        public async System.Threading.Tasks.Task<PlatformSingle> PlatformsReadAsync (int? id)
+        public async System.Threading.Tasks.Task<PlatformSingle> PlatformsReadAsync(int? id)
         {
-             ApiResponse<PlatformSingle> localVarResponse = await PlatformsReadAsyncWithHttpInfo(id);
-             return localVarResponse.Data;
+            ApiResponse<PlatformSingle> localVarResponse = await PlatformsReadAsyncWithHttpInfo(id);
+            return localVarResponse.Data;
 
         }
 
         /// <summary>
         /// Get details of the platform. 
         /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique integer value identifying this Platform.</param>
         /// <returns>Task of ApiResponse (PlatformSingle)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PlatformSingle>> PlatformsReadAsyncWithHttpInfo (int? id)
+        public async System.Threading.Tasks.Task<ApiResponse<PlatformSingle>> PlatformsReadAsyncWithHttpInfo(int? id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling PlatformsApi->PlatformsRead");
 
             var localVarPath = "/platforms/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
+            var localVarPathParams = new Dictionary<string, string>();
+            var localVarQueryParams = new List<KeyValuePair<string, string>>();
+            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<string, string>();
+            var localVarFileParams = new Dictionary<string, FileParameter>();
+            object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            string[] localVarHttpContentTypes = new string[] {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            string[] localVarHttpHeaderAccepts = new string[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -682,7 +682,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<PlatformSingle>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PlatformSingle) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlatformSingle)));
+                (PlatformSingle)Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlatformSingle)));
         }
 
     }

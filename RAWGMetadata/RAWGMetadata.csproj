@@ -104,7 +104,12 @@
       <Version>5.2.0-rc</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Rawg\Rawg.csproj">
+      <Project>{a4a22e62-38bd-4ee6-a0ec-8a5e4694b72f}</Project>
+      <Name>Rawg</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\Playnite.Common.dll" />
     <Content Include="Lib\Playnite.dll" />
