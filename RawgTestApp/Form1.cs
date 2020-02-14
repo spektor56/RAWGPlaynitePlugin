@@ -33,6 +33,7 @@ namespace RawgTestApp
                 var gamesApi = new GamesApi();
                 
                 var gameList = await gamesApi.GamesListAsync(null, null, gameName, null, _platformList["NES"].ToString());
+                
                 var foundGame = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(gameName.Sanitize()));
                 if(foundGame == null)
                 {

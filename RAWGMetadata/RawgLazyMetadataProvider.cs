@@ -16,6 +16,9 @@ namespace RAWGMetadata
         private readonly RawgMetadataPlugin plugin;
         private readonly ulong gameId = 0;
         private Rawg.Model.Game _game;
+        private Rawg.Model.GameSingle _gameInfo;
+        private GamesApi _gamesApi = new GamesApi();
+
         private List<MetadataField> availableFields;
 
         public RawgLazyMetadataProvider(MetadataRequestOptions options, RawgMetadataPlugin plugin)
@@ -31,15 +34,29 @@ namespace RAWGMetadata
             this.gameId = gameId;
             this.plugin = plugin;
         }
-        
+
+        private Rawg.Model.GameSingle GetGameInfo()
+        {
+            var game = GetGame();
+
+            if (_gameInfo is null)
+            {
+                _gameInfo = _gamesApi.GamesRead(game.Id.ToString());
+                return _gameInfo;
+            }
+            else
+            {
+                return _gameInfo;
+            }
+        }
+
         private Rawg.Model.Game GetGame()
         {
             if (_game is null)
             {
                 if (plugin.PlatformList.ContainsKey("NES"))
                 {
-                    var gamesApi = new GamesApi();
-                    var gameList = gamesApi.GamesList(null, null, options.GameData.Name, null, plugin.PlatformList["NES"].ToString());
+                    var gameList = _gamesApi.GamesList(null, null, options.GameData.Name, null, plugin.PlatformList["NES"].ToString());
                     _game = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
                     if (_game == null)
                     {
@@ -130,23 +147,23 @@ namespace RAWGMetadata
 
             return base.GetPublishers();
         }
-
+        */
 
         public override string GetDescription()
         {
-            var game = GetGame();
+            var gameInfo = GetGameInfo();
 
-            if (game != null)
+            if (gameInfo != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.Overview))
+                if (!string.IsNullOrWhiteSpace(gameInfo.Description))
                 {
-                    return game.Overview;
+                    return gameInfo.Description;
                 }
             }
 
             return base.GetDescription();
         }
-        */
+        
         public override int? GetCommunityScore()
         {
             var game = GetGame();
