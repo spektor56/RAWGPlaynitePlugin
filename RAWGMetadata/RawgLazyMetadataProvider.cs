@@ -1,4 +1,7 @@
-﻿using Playnite.SDK.Plugins;
+﻿using Playnite.SDK.Metadata;
+using Playnite.SDK.Plugins;
+using Rawg.Api;
+using RAWGMetadata.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,7 @@ namespace RAWGMetadata
         private readonly MetadataRequestOptions options;
         private readonly RawgMetadataPlugin plugin;
         private readonly ulong gameId = 0;
+        private Rawg.Model.Game _game;
         private List<MetadataField> availableFields;
 
         public RawgLazyMetadataProvider(MetadataRequestOptions options, RawgMetadataPlugin plugin)
@@ -27,25 +31,30 @@ namespace RAWGMetadata
             this.gameId = gameId;
             this.plugin = plugin;
         }
-
-        private ulong GetGame()
+        
+        private Rawg.Model.Game GetGame()
         {
             if (_game is null)
             {
-                using (var context = new MetaDataContext())
+                if (plugin.PlatformList.ContainsKey("NES"))
                 {
-                    var gameSearchName = options.GameData.Name.Sanitize();
-                    var platformSearchName = options.GameData.Platform.Name.Sanitize();
-                    _game = context.Games.FirstOrDefault(game => game.PlatformSearch == platformSearchName && (game.NameSearch == gameSearchName || game.AlternateNames.Any(alternateName => alternateName.NameSearch == gameSearchName)));
-                    return _game;
+                    var gamesApi = new GamesApi();
+                    var gameList = gamesApi.GamesList(null, null, options.GameData.Name, null, plugin.PlatformList["NES"].ToString());
+                    _game = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
+                    if (_game == null)
+                    {
+                        _game = gameList.Results.FirstOrDefault();
+                    }
                 }
+
+                return _game;
             }
             else
             {
                 return _game;
             }
         }
-
+        
         public override string GetName()
         {
             var game = GetGame();
@@ -60,7 +69,7 @@ namespace RAWGMetadata
 
             return base.GetName();
         }
-
+        /*
         public override List<string> GetGenres()
         {
             var game = GetGame();
@@ -75,22 +84,23 @@ namespace RAWGMetadata
 
             return base.GetGenres();
         }
-
+        */
+        
         public override DateTime? GetReleaseDate()
         {
             var game = GetGame();
 
             if (game != null)
             {
-                if (game.ReleaseDate != null)
+                if (game.Released != null)
                 {
-                    return game.ReleaseDate;
+                    return game.Released;
                 }
             }
 
             return base.GetReleaseDate();
         }
-
+        /*
         public override List<string> GetDevelopers()
         {
             var game = GetGame();
@@ -136,60 +146,52 @@ namespace RAWGMetadata
 
             return base.GetDescription();
         }
-
+        */
         public override int? GetCommunityScore()
         {
             var game = GetGame();
 
             if (game != null)
             {
-                if (game.CommunityRating != null)
+                if (game.Rating != null)
                 {
-                    return (int)game.CommunityRating;
+                    return (int)game.Rating;
                 }
             }
 
             return base.GetCommunityScore();
         }
-
+        
         public override MetadataFile GetCoverImage()
         {
             var game = GetGame();
 
             if (game != null)
             {
-                using (var context = new MetaDataContext())
+                if (!string.IsNullOrWhiteSpace(game.BackgroundImage))
                 {
-                    var coverImage = GetBestImage(context.GameImages.Where(image => image.DatabaseID == game.DatabaseID && LaunchBox.Image.ImageType.Cover.Contains(image.Type)).ToList(), LaunchBox.Image.ImageType.Cover);
-                    if (coverImage != null)
-                    {
-                        return new MetadataFile("https://images.launchbox-app.com/" + coverImage.FileName);
-                    }
+                    return new MetadataFile(game.BackgroundImage);
                 }
             }
 
             return base.GetCoverImage();
         }
-
+        
         public override MetadataFile GetBackgroundImage()
         {
             var game = GetGame();
 
             if (game != null)
             {
-                using (var context = new MetaDataContext())
+                if (!string.IsNullOrWhiteSpace(game.BackgroundImage))
                 {
-                    var backgroundImage = GetBestImage(context.GameImages.Where(image => image.DatabaseID == game.DatabaseID && LaunchBox.Image.ImageType.Background.Contains(image.Type)).ToList(), LaunchBox.Image.ImageType.Background);
-                    if (backgroundImage != null)
-                    {
-                        return new MetadataFile("https://images.launchbox-app.com/" + backgroundImage.FileName);
-                    }
+                    return new MetadataFile(game.BackgroundImage);
                 }
             }
 
             return base.GetBackgroundImage();
         }
-
+        /*
         public override List<Link> GetLinks()
         {
             var game = GetGame();
@@ -217,13 +219,7 @@ namespace RAWGMetadata
             return base.GetLinks();
         }
 
-        public override List<MetadataField> AvailableFields
-        {
-            get
-            {
-                return plugin.SupportedFields;
-            }
-        }
+        
 
         public override MetadataFile GetIcon()
         {
@@ -242,6 +238,15 @@ namespace RAWGMetadata
         public override List<string> GetTags()
         {
             return base.GetTags();
+        }
+        */
+
+        public override List<MetadataField> AvailableFields
+        {
+            get
+            {
+                return plugin.SupportedFields;
+            }
         }
     }
 }

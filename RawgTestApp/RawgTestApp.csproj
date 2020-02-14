@@ -80,10 +80,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RAWGMetadata\RAWGMetadata.csproj">
+      <Project>{6924ee8e-9ccf-42fc-8841-ec83de500cb8}</Project>
+      <Name>RAWGMetadata</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rawg\Rawg.csproj">
       <Project>{A4A22E62-38BD-4EE6-A0EC-8A5E4694B72F}</Project>
       <Name>Rawg</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="PlayniteSDK">
+      <Version>5.2.0-rc2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

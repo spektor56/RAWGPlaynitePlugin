@@ -12,6 +12,10 @@ namespace RAWGMetadata
         private RawgMetadataSettings editingClone;
         private readonly RawgMetadataPlugin plugin;
 
+        public RawgMetadataSettings()
+        {
+        }
+
         public RawgMetadataSettings(RawgMetadataPlugin plugin)
         {
             this.plugin = plugin;
@@ -26,22 +30,23 @@ namespace RAWGMetadata
 
         public void BeginEdit()
         {
-            throw new NotImplementedException();
-        }
-
-        public void CancelEdit()
-        {
-            throw new NotImplementedException();
+            editingClone = this.GetClone();
         }
 
         public void EndEdit()
         {
-            throw new NotImplementedException();
+            plugin.SavePluginSettings(this);
+        }
+
+        public void CancelEdit()
+        {
+            LoadValues(editingClone);
         }
 
         public bool VerifySettings(out List<string> errors)
         {
-            throw new NotImplementedException();
+            errors = null;
+            return true;
         }
 
         private void LoadValues(RawgMetadataSettings source)

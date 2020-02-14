@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RAWGMetadata.Extensions;
 
 namespace RawgTestApp
 {
@@ -21,13 +22,26 @@ namespace RawgTestApp
 
         private async void button1_Click(object sender, EventArgs e)
         {
-
+            
             var platformApi = new PlatformsApi();
-            var gamesApi = new GamesApi();
-            var gameList = await gamesApi.GamesListAsync(null, null, "Super Mario Bros. 2", null, "49");
+            var platforms = await platformApi.PlatformsListAsync();
+            var _platformList = platforms.Results.ToDictionary(result => result.Name, result => (int)result.Id, StringComparer.OrdinalIgnoreCase);
+
+            if (_platformList.ContainsKey("NES"))
+            {
+                string gameName = "Super Mario Bros. 2";
+                var gamesApi = new GamesApi();
+                
+                var gameList = await gamesApi.GamesListAsync(null, null, gameName, null, _platformList["NES"].ToString());
+                var foundGame = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(gameName.Sanitize()));
+                if(foundGame == null)
+                {
+                    foundGame = gameList.Results.First();
+                }
+            }
+            
 
             
-            var platforms = await platformApi.PlatformsListAsync();
             foreach (var platform in platforms.Results)
             {
                 Debug.Print(platform.Id.ToString());
