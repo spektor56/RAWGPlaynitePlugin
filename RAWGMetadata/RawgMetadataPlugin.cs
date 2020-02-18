@@ -67,8 +67,6 @@ namespace RAWGMetadata
 
         public RawgMetadataPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
         {
-            PlatformTranslationTable.Add("K", "k");
-
             Settings = new RawgMetadataSettings(this);
             Task.Run(() => {
                 try
