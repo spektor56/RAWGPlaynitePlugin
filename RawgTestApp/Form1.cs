@@ -29,7 +29,7 @@ namespace RawgTestApp
 
             if (_platformList.ContainsKey("NES"))
             {
-                string gameName = "Super Mario Bros. 2";
+                string gameName = "Addams family, The";
                 var gamesApi = new GamesApi();
                 
                 var gameList = await gamesApi.GamesListAsync(null, null, gameName, null, _platformList["NES"].ToString());
@@ -39,6 +39,7 @@ namespace RawgTestApp
                 {
                     foundGame = gameList.Results.First();
                 }
+                var maxRating = gameList.Results.Max(game => game.Rating);
             }
             
 

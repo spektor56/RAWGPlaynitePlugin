@@ -1,9 +1,11 @@
 ﻿using Playnite.SDK.Metadata;
+using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Rawg.Api;
 using RAWGMetadata.Extensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace RAWGMetadata
         private readonly MetadataRequestOptions options;
         private readonly RawgMetadataPlugin plugin;
         private readonly ulong gameId = 0;
+        private bool initialized = false;
         private Rawg.Model.Game _game;
         private Rawg.Model.GameSingle _gameInfo;
         private GamesApi _gamesApi = new GamesApi();
@@ -39,7 +42,7 @@ namespace RAWGMetadata
         {
             var game = GetGame();
 
-            if (_gameInfo is null)
+            if (!(game is null) && _gameInfo is null)
             {
                 _gameInfo = _gamesApi.GamesRead(game.Id.ToString());
                 return _gameInfo;
@@ -52,18 +55,30 @@ namespace RAWGMetadata
 
         private Rawg.Model.Game GetGame()
         {
-            if (_game is null)
+            if (_game is null && !initialized)
             {
-                if (plugin.PlatformList.ContainsKey("NES"))
+                initialized = true;
+
+                string platformId = null;
+                var platform = options.GameData.Platform.Name;
+                if (plugin.PlatformTranslationTable.ContainsKey(platform))
                 {
-                    var gameList = _gamesApi.GamesList(null, null, options.GameData.Name, null, plugin.PlatformList["NES"].ToString());
-                    _game = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
-                    if (_game == null)
-                    {
-                        _game = gameList.Results.FirstOrDefault();
-                    }
+                    platform = plugin.PlatformTranslationTable[platform];
+                }
+                
+                if (plugin.PlatformList.ContainsKey(platform))
+                {
+                    platformId = plugin.PlatformList[platform].ToString();
                 }
 
+                var gameList = _gamesApi.GamesList(null, null, options.GameData.Name, null, platformId);
+                _game = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
+                /*
+                if (_game == null)
+                {
+                    _game = gameList.Results.FirstOrDefault();
+                }
+                */
                 return _game;
             }
             else
@@ -106,7 +121,7 @@ namespace RAWGMetadata
         public override DateTime? GetReleaseDate()
         {
             var game = GetGame();
-
+            
             if (game != null)
             {
                 if (game.Released != null)
@@ -152,7 +167,7 @@ namespace RAWGMetadata
         public override string GetDescription()
         {
             var gameInfo = GetGameInfo();
-
+            
             if (gameInfo != null)
             {
                 if (!string.IsNullOrWhiteSpace(gameInfo.Description))
@@ -172,7 +187,7 @@ namespace RAWGMetadata
             {
                 if (game.Rating != null)
                 {
-                    return (int)game.Rating;
+                    return (int)(game.Rating*20);
                 }
             }
 
@@ -181,6 +196,7 @@ namespace RAWGMetadata
         
         public override MetadataFile GetCoverImage()
         {
+            /*
             var game = GetGame();
 
             if (game != null)
@@ -190,7 +206,7 @@ namespace RAWGMetadata
                     return new MetadataFile(game.BackgroundImage);
                 }
             }
-
+            */
             return base.GetCoverImage();
         }
         
@@ -208,50 +224,63 @@ namespace RAWGMetadata
 
             return base.GetBackgroundImage();
         }
-        /*
+        
         public override List<Link> GetLinks()
         {
-            var game = GetGame();
+            var gameInfo = GetGameInfo();
 
-            if (game != null)
+            if (gameInfo != null)
             {
-                var links = new List<Link>
-                {
-                    new Link("LaunchBox", "https://gamesdb.launchbox-app.com/games/dbid/" + game.DatabaseID)
-                };
+                var links = new List<Link>();
 
-                if (!string.IsNullOrWhiteSpace(game.WikipediaURL))
+                if (!string.IsNullOrWhiteSpace(gameInfo.Website))
                 {
-                    links.Add(new Link("Wikipedia", game.WikipediaURL));
+                    links.Add(new Link("Website", gameInfo.Website));
                 }
 
-                if (!string.IsNullOrWhiteSpace(game.VideoURL))
+                if (!string.IsNullOrWhiteSpace(gameInfo.MetacriticUrl))
                 {
-                    links.Add(new Link("Video", game.VideoURL));
+                    links.Add(new Link("Metacritic", gameInfo.MetacriticUrl));
+                }
+                
+                if (!string.IsNullOrWhiteSpace(gameInfo.RedditUrl))
+                {
+                    links.Add(new Link("Reddit", gameInfo.RedditUrl));
                 }
 
-                return links;
+                if (links.Count > 0)
+                {
+                    return links;
+                }
             }
 
             return base.GetLinks();
         }
 
-        
-
         public override MetadataFile GetIcon()
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                LBGDBMetadata.Properties.Resources.launchbox.Save(ms);
-                return new MetadataFile("LaunchBox", ms.ToArray());
+                RAWGMetadata.Properties.Resources.rawg.Save(ms);
+                return new MetadataFile("RAWG", ms.ToArray());
             }
         }
-
+        
         public override int? GetCriticScore()
         {
+            var game = GetGame();
+
+            if (game != null)
+            {
+                if (game.Metacritic != null)
+                {
+                    return game.Metacritic;
+                }
+            }
+
             return base.GetCriticScore();
         }
-
+        /*
         public override List<string> GetTags()
         {
             return base.GetTags();
