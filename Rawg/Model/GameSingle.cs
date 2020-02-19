@@ -287,6 +287,18 @@ namespace Rawg.Model
         [DataMember(Name="game_series_count", EmitDefaultValue=false)]
         public int? GameSeriesCount { get; private set; }
 
+        [DataMember(Name = "developers", EmitDefaultValue = false)]
+        public List<Developer> Developers { get; set; }
+
+        [DataMember(Name = "publishers", EmitDefaultValue = false)]
+        public List<Publisher> Publishers { get; set; }
+
+        [DataMember(Name = "genres", EmitDefaultValue = false)]
+        public List<Genre> Genres { get; set; }
+
+        [DataMember(Name = "tags", EmitDefaultValue = false)]
+        public List<Tag> Tags { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

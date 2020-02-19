@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RAWGMetadata
 {
@@ -22,12 +20,8 @@ namespace RAWGMetadata
         private Rawg.Model.GameSingle _gameInfo;
         private GamesApi _gamesApi = new GamesApi();
 
-        private List<MetadataField> availableFields;
-
         public RawgLazyMetadataProvider(MetadataRequestOptions options, RawgMetadataPlugin plugin)
         {
-            //Game object is in the options class
-            //This class will search for the game once (name + platform), then use gameid on subsequent lookups to load each metadata field.
             this.options = options;
             this.plugin = plugin;
         }
@@ -101,22 +95,22 @@ namespace RAWGMetadata
 
             return base.GetName();
         }
-        /*
+        
         public override List<string> GetGenres()
         {
-            var game = GetGame();
+            var gameInfo = GetGameInfo();
 
-            if (game != null)
+            if (gameInfo != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.Genres))
+                if (gameInfo.Genres != null)
                 {
-                    return game.Genres.Split(';').Select(genre => genre.Trim()).ToList();
+                    return gameInfo.Genres.Select(genre => genre.Name).ToList();
                 }
             }
 
             return base.GetGenres();
         }
-        */
+        
         
         public override DateTime? GetReleaseDate()
         {
@@ -132,16 +126,16 @@ namespace RAWGMetadata
 
             return base.GetReleaseDate();
         }
-        /*
+        
         public override List<string> GetDevelopers()
         {
-            var game = GetGame();
+            var gameInfo = GetGameInfo();
 
-            if (game != null)
+            if (gameInfo != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.Developer))
+                if (gameInfo.Developers != null)
                 {
-                    return game.Developer.Split(';').Select(developer => developer.Trim()).ToList();
+                    return gameInfo.Developers.Select(developer => developer.Name).ToList();
                 }
             }
 
@@ -150,19 +144,19 @@ namespace RAWGMetadata
 
         public override List<string> GetPublishers()
         {
-            var game = GetGame();
+            var gameInfo = GetGameInfo();
 
-            if (game != null)
+            if (gameInfo != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.Publisher))
+                if (gameInfo.Publishers != null)
                 {
-                    return game.Publisher.Split(';').Select(publisher => publisher.Trim()).ToList();
+                    return gameInfo.Publishers.Select(publisher => publisher.Name).ToList();
                 }
             }
 
             return base.GetPublishers();
         }
-        */
+        
 
         public override string GetDescription()
         {
@@ -280,12 +274,22 @@ namespace RAWGMetadata
 
             return base.GetCriticScore();
         }
-        /*
+        
         public override List<string> GetTags()
         {
+            var gameInfo = GetGameInfo();
+
+            if (gameInfo != null)
+            {
+                if (gameInfo.Tags != null)
+                {
+                    return gameInfo.Tags.Select(tag => tag.Name).ToList();
+                }
+            }
+
             return base.GetTags();
         }
-        */
+        
 
         public override List<MetadataField> AvailableFields
         {

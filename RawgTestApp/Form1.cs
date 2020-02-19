@@ -22,7 +22,8 @@ namespace RawgTestApp
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            
+            var developerApi = new DevelopersApi();
+            var test = await developerApi.DevelopersListAsync(null, null);
             var platformApi = new PlatformsApi();
             var platforms = await platformApi.PlatformsListAsync();
             var _platformList = platforms.Results.ToDictionary(result => result.Name, result => (int)result.Id, StringComparer.OrdinalIgnoreCase);

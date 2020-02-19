@@ -15,7 +15,8 @@ namespace RAWGMetadata
     {
         internal readonly RawgMetadataSettings Settings;
         public bool initializing { get; private set; } = true;
-        public Dictionary<string,int> PlatformList { get; private set; }
+        public Dictionary<string, int> PlatformList { get; private set; }
+
         public Dictionary<string, string> PlatformTranslationTable = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
             { "3DO Interactive Multiplayer","3DO"},
             { "Adobe Flash","Web"},
@@ -68,12 +69,15 @@ namespace RAWGMetadata
         public RawgMetadataPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
         {
             Settings = new RawgMetadataSettings(this);
+            PlatformList = Settings.PlatformList;
             Task.Run(() => {
                 try
                 {
                     var platformApi = new PlatformsApi();
                     var platforms = platformApi.PlatformsList();
                     PlatformList = platforms.Results.ToDictionary(result => result.Name, result => (int)result.Id, StringComparer.OrdinalIgnoreCase);
+                    Settings.PlatformList = PlatformList;
+                    Settings.EndEdit();
                 }
                 finally
                 {
@@ -142,13 +146,13 @@ namespace RAWGMetadata
             MetadataField.ReleaseDate,
             MetadataField.Developers,
             MetadataField.Publishers,
-            //MetadataField.Tags,
+            MetadataField.Tags,
             MetadataField.Description,
             MetadataField.Links,
             MetadataField.CriticScore,
             MetadataField.CommunityScore,
             MetadataField.Icon,
-            MetadataField.CoverImage,
+            //MetadataField.CoverImage,
             MetadataField.BackgroundImage
 
         };
