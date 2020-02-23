@@ -1,8 +1,10 @@
-﻿using Playnite.SDK.Metadata;
+﻿using Playnite.SDK;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Rawg.Api;
 using RAWGMetadata.Extensions;
+using RAWGMetadata.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,22 +34,20 @@ namespace RAWGMetadata
             this.plugin = plugin;
         }
 
-        private Rawg.Model.GameSingle GetGameInfo()
+        private void GetGameInfo()
         {
-            var game = GetGame();
-
-            if (!(game is null) && _gameInfo is null)
+            
+            if (_gameInfo is null)
             {
-                _gameInfo = _gamesApi.GamesRead(game.Id.ToString());
-                return _gameInfo;
-            }
-            else
-            {
-                return _gameInfo;
+                GetGame();
+                if (!(_game is null))
+                {
+                    _gameInfo = _gamesApi.GamesRead(_game.Id.ToString());
+                }
             }
         }
 
-        private Rawg.Model.Game GetGame()
+        private void GetGame()
         {
             if (_game is null && !initialized)
             {
@@ -67,29 +67,42 @@ namespace RAWGMetadata
 
                 var gameList = _gamesApi.GamesList(null, null, options.GameData.Name, null, platformId);
                 _game = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
-                /*
-                if (_game == null)
+                
+                if (_game == null && !options.IsBackgroundDownload)
                 {
-                    _game = gameList.Results.FirstOrDefault();
+                    var selectedGame = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(new List<GenericItemOption>(gameList.Results.Select(_game => new GameOption(_game))), (a) =>
+                    {
+                        try
+                        {
+                            return new List<GenericItemOption>(_gamesApi.GamesList(null, null, a, null, platformId).Results.Select(_game => new GameOption(_game)));
+                        }
+                        catch (Exception e)
+                        {
+                            return new List<GenericItemOption>();
+                        }
+                    }, options.GameData.Name, string.Empty);
+
+                    if (selectedGame == null)
+                    {
+                        _game = null;
+                    }
+                    else
+                    {
+                        _game = ((GameOption)selectedGame).Game;
+                    }
                 }
-                */
-                return _game;
-            }
-            else
-            {
-                return _game;
             }
         }
         
         public override string GetName()
         {
-            var game = GetGame();
+            GetGame();
 
-            if (game != null)
+            if (_game != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.Name))
+                if (!string.IsNullOrWhiteSpace(_game.Name))
                 {
-                    return game.Name;
+                    return _game.Name;
                 }
             }
 
@@ -98,13 +111,13 @@ namespace RAWGMetadata
         
         public override List<string> GetGenres()
         {
-            var gameInfo = GetGameInfo();
+            GetGameInfo();
 
-            if (gameInfo != null)
+            if (_gameInfo != null)
             {
-                if (gameInfo.Genres != null)
+                if (_gameInfo.Genres != null)
                 {
-                    return gameInfo.Genres.Select(genre => genre.Name).ToList();
+                    return _gameInfo.Genres.Select(genre => genre.Name).ToList();
                 }
             }
 
@@ -114,13 +127,13 @@ namespace RAWGMetadata
         
         public override DateTime? GetReleaseDate()
         {
-            var game = GetGame();
+            GetGame();
             
-            if (game != null)
+            if (_game != null)
             {
-                if (game.Released != null)
+                if (_game.Released != null)
                 {
-                    return game.Released;
+                    return _game.Released;
                 }
             }
 
@@ -129,13 +142,13 @@ namespace RAWGMetadata
         
         public override List<string> GetDevelopers()
         {
-            var gameInfo = GetGameInfo();
+            GetGameInfo();
 
-            if (gameInfo != null)
+            if (_gameInfo != null)
             {
-                if (gameInfo.Developers != null)
+                if (_gameInfo.Developers != null)
                 {
-                    return gameInfo.Developers.Select(developer => developer.Name).ToList();
+                    return _gameInfo.Developers.Select(developer => developer.Name).ToList();
                 }
             }
 
@@ -144,13 +157,13 @@ namespace RAWGMetadata
 
         public override List<string> GetPublishers()
         {
-            var gameInfo = GetGameInfo();
+            GetGameInfo();
 
-            if (gameInfo != null)
+            if (_gameInfo != null)
             {
-                if (gameInfo.Publishers != null)
+                if (_gameInfo.Publishers != null)
                 {
-                    return gameInfo.Publishers.Select(publisher => publisher.Name).ToList();
+                    return _gameInfo.Publishers.Select(publisher => publisher.Name).ToList();
                 }
             }
 
@@ -160,13 +173,13 @@ namespace RAWGMetadata
 
         public override string GetDescription()
         {
-            var gameInfo = GetGameInfo();
+            GetGameInfo();
             
-            if (gameInfo != null)
+            if (_gameInfo != null)
             {
-                if (!string.IsNullOrWhiteSpace(gameInfo.Description))
+                if (!string.IsNullOrWhiteSpace(_gameInfo.Description))
                 {
-                    return gameInfo.Description;
+                    return _gameInfo.Description;
                 }
             }
 
@@ -175,13 +188,13 @@ namespace RAWGMetadata
         
         public override int? GetCommunityScore()
         {
-            var game = GetGame();
+            GetGame();
 
-            if (game != null)
+            if (_game != null)
             {
-                if (game.Rating != null)
+                if (_game.Rating != null)
                 {
-                    return (int)(game.Rating*20);
+                    return (int)(_game.Rating*20);
                 }
             }
 
@@ -191,13 +204,13 @@ namespace RAWGMetadata
         public override MetadataFile GetCoverImage()
         {
             /*
-            var game = GetGame();
+            GetGame();
 
-            if (game != null)
+            if (_game != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.BackgroundImage))
+                if (!string.IsNullOrWhiteSpace(_game.BackgroundImage))
                 {
-                    return new MetadataFile(game.BackgroundImage);
+                    return new MetadataFile(_game.BackgroundImage);
                 }
             }
             */
@@ -206,13 +219,13 @@ namespace RAWGMetadata
         
         public override MetadataFile GetBackgroundImage()
         {
-            var game = GetGame();
+            GetGame();
 
-            if (game != null)
+            if (_game != null)
             {
-                if (!string.IsNullOrWhiteSpace(game.BackgroundImage))
+                if (!string.IsNullOrWhiteSpace(_game.BackgroundImage))
                 {
-                    return new MetadataFile(game.BackgroundImage);
+                    return new MetadataFile(_game.BackgroundImage);
                 }
             }
 
@@ -221,25 +234,25 @@ namespace RAWGMetadata
         
         public override List<Link> GetLinks()
         {
-            var gameInfo = GetGameInfo();
+            GetGameInfo();
 
-            if (gameInfo != null)
+            if (_gameInfo != null)
             {
                 var links = new List<Link>();
 
-                if (!string.IsNullOrWhiteSpace(gameInfo.Website))
+                if (!string.IsNullOrWhiteSpace(_gameInfo.Website))
                 {
-                    links.Add(new Link("Website", gameInfo.Website));
+                    links.Add(new Link("Website", _gameInfo.Website));
                 }
 
-                if (!string.IsNullOrWhiteSpace(gameInfo.MetacriticUrl))
+                if (!string.IsNullOrWhiteSpace(_gameInfo.MetacriticUrl))
                 {
-                    links.Add(new Link("Metacritic", gameInfo.MetacriticUrl));
+                    links.Add(new Link("Metacritic", _gameInfo.MetacriticUrl));
                 }
                 
-                if (!string.IsNullOrWhiteSpace(gameInfo.RedditUrl))
+                if (!string.IsNullOrWhiteSpace(_gameInfo.RedditUrl))
                 {
-                    links.Add(new Link("Reddit", gameInfo.RedditUrl));
+                    links.Add(new Link("Reddit", _gameInfo.RedditUrl));
                 }
 
                 if (links.Count > 0)
@@ -253,22 +266,26 @@ namespace RAWGMetadata
 
         public override MetadataFile GetIcon()
         {
+            /*
             using (MemoryStream ms = new MemoryStream())
             {
                 RAWGMetadata.Properties.Resources.rawg.Save(ms);
                 return new MetadataFile("RAWG", ms.ToArray());
             }
+            */
+
+            return base.GetIcon();
         }
         
         public override int? GetCriticScore()
         {
-            var game = GetGame();
+            GetGame();
 
-            if (game != null)
+            if (_game != null)
             {
-                if (game.Metacritic != null)
+                if (_game.Metacritic != null)
                 {
-                    return game.Metacritic;
+                    return _game.Metacritic;
                 }
             }
 
@@ -277,13 +294,13 @@ namespace RAWGMetadata
         
         public override List<string> GetTags()
         {
-            var gameInfo = GetGameInfo();
+            GetGameInfo();
 
-            if (gameInfo != null)
+            if (_gameInfo != null)
             {
-                if (gameInfo.Tags != null)
+                if (_gameInfo.Tags != null)
                 {
-                    return gameInfo.Tags.Select(tag => tag.Name).ToList();
+                    return _gameInfo.Tags.Select(tag => tag.Name).ToList();
                 }
             }
 

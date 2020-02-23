@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\AppData\Local\Playnite\Extensions\RAWGMetadata\</OutputPath>
+    <OutputPath>..\..\..\..\AppData\Local\Playnite\Extensions\RawgMetadata\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Model\GameOption.cs" />
     <Compile Include="RawgLazyMetadataProvider.cs" />
     <Compile Include="RawgMetadataPlugin.cs" />
     <Compile Include="RawgMetadataSettings.cs" />
