@@ -66,15 +66,15 @@ namespace RAWGMetadata
                 }
 
                 var gameList = _gamesApi.GamesList(null, null, options.GameData.Name, null, platformId);
-                _game = gameList.Results.FirstOrDefault(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
-                
-                if (_game == null && !options.IsBackgroundDownload)
+                var gameMatches = gameList.Results.Where(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
+
+                if ((gameMatches == null || gameMatches.Count() != 1) && !options.IsBackgroundDownload)
                 {
-                    var selectedGame = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(new List<GenericItemOption>(gameList.Results.Select(_game => new GameOption(_game))), (a) =>
+                    var selectedGame = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(new List<GenericItemOption>(gameMatches.Any() ? gameMatches.Select(game => new GameOption(game)) : gameList.Results.Select(game => new GameOption(game))), (a) =>
                     {
                         try
                         {
-                            return new List<GenericItemOption>(_gamesApi.GamesList(null, null, a, null, platformId).Results.Select(_game => new GameOption(_game)));
+                            return new List<GenericItemOption>(_gamesApi.GamesList(null, null, a, null, platformId).Results.Select(game => new GameOption(game)));
                         }
                         catch (Exception e)
                         {
@@ -90,6 +90,10 @@ namespace RAWGMetadata
                     {
                         _game = ((GameOption)selectedGame).Game;
                     }
+                }
+                else
+                {
+                    _game = gameMatches.FirstOrDefault();
                 }
             }
         }
