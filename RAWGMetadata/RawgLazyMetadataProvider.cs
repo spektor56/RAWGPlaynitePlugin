@@ -7,36 +7,27 @@ using RAWGMetadata.Extensions;
 using RAWGMetadata.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace RAWGMetadata
 {
     public class RawgLazyMetadataProvider : OnDemandMetadataProvider
     {
-        private readonly MetadataRequestOptions options;
-        private readonly RawgMetadataPlugin plugin;
-        private readonly ulong gameId = 0;
-        private bool initialized = false;
+        private readonly MetadataRequestOptions _options;
+        private readonly RawgMetadataPlugin _plugin;
+        private bool _initialized = false;
         private Rawg.Model.Game _game;
         private Rawg.Model.GameSingle _gameInfo;
-        private GamesApi _gamesApi = new GamesApi();
+        private readonly GamesApi _gamesApi = new GamesApi();
 
         public RawgLazyMetadataProvider(MetadataRequestOptions options, RawgMetadataPlugin plugin)
         {
-            this.options = options;
-            this.plugin = plugin;
-        }
-
-        public RawgLazyMetadataProvider(ulong gameId, RawgMetadataPlugin plugin)
-        {
-            this.gameId = gameId;
-            this.plugin = plugin;
+            this._options = options;
+            this._plugin = plugin;
         }
 
         private void GetGameInfo()
         {
-            
             if (_gameInfo is null)
             {
                 GetGame();
@@ -49,28 +40,28 @@ namespace RAWGMetadata
 
         private void GetGame()
         {
-            if (_game is null && !initialized)
+            if (_game is null && !_initialized)
             {
-                initialized = true;
+                _initialized = true;
 
                 string platformId = null;
-                var platform = options.GameData.Platform.Name;
-                if (plugin.PlatformTranslationTable.ContainsKey(platform))
+                var platform = _options.GameData.Platform.Name;
+                if (_plugin.PlatformTranslationTable.ContainsKey(platform))
                 {
-                    platform = plugin.PlatformTranslationTable[platform];
+                    platform = _plugin.PlatformTranslationTable[platform];
                 }
                 
-                if (plugin.PlatformList.ContainsKey(platform))
+                if (_plugin.PlatformList.ContainsKey(platform))
                 {
-                    platformId = plugin.PlatformList[platform].ToString();
+                    platformId = _plugin.PlatformList[platform].ToString();
                 }
 
-                var gameList = _gamesApi.GamesList(null, null, options.GameData.Name, null, platformId);
-                var gameMatches = gameList.Results.Where(game => game.Name.Sanitize().Equals(options.GameData.Name.Sanitize()));
+                var gameList = _gamesApi.GamesList(null, null, _options.GameData.Name, null, platformId);
+                var gameMatches = gameList.Results.Where(game => game.Name.Sanitize().Equals(_options.GameData.Name.Sanitize()));
 
-                if ((gameMatches == null || gameMatches.Count() != 1) && !options.IsBackgroundDownload)
+                if ((gameMatches == null || gameMatches.Count() != 1) && !_options.IsBackgroundDownload)
                 {
-                    var selectedGame = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(new List<GenericItemOption>(gameMatches.Any() ? gameMatches.Select(game => new GameOption(game)) : gameList.Results.Select(game => new GameOption(game))), (a) =>
+                    var selectedGame = _plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(new List<GenericItemOption>(gameMatches.Any() ? gameMatches.Select(game => new GameOption(game)) : gameList.Results.Select(game => new GameOption(game))), (a) =>
                     {
                         try
                         {
@@ -80,7 +71,7 @@ namespace RAWGMetadata
                         {
                             return new List<GenericItemOption>();
                         }
-                    }, options.GameData.Name, string.Empty);
+                    }, _options.GameData.Name, string.Empty);
 
                     if (selectedGame == null)
                     {
@@ -316,7 +307,7 @@ namespace RAWGMetadata
         {
             get
             {
-                return plugin.SupportedFields;
+                return _plugin.SupportedFields;
             }
         }
     }
