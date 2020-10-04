@@ -4,6 +4,9 @@ Version: 1.1
 Module: RAWGMetadata.dll
 Type: MetadataProvider
 Icon: Resources\rawg.ico
+Links:
+  - Name: Github
+    Url: https://github.com/spektor56/RAWGPlaynitePlugin
 UpdaterConfig:
   GitHubUser: spektor56
   GitHubRepo: RAWGPlaynitePlugin
