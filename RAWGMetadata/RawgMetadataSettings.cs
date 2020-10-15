@@ -6,8 +6,8 @@ namespace RAWGMetadata
 {
     public class RawgMetadataSettings : ObservableObject, ISettings
     {
-        private RawgMetadataSettings editingClone;
-        private readonly RawgMetadataPlugin plugin;
+        private RawgMetadataSettings _editingClone;
+        private readonly RawgMetadataPlugin _plugin;
 
         public RawgMetadataSettings()
         {
@@ -68,29 +68,29 @@ namespace RAWGMetadata
 
         public RawgMetadataSettings(RawgMetadataPlugin plugin)
         {
-            this.plugin = plugin;
+            this._plugin = plugin;
 
-            var settings = plugin.LoadPluginSettings<RawgMetadataSettings>();
-            if (settings != null)
+            var savedSettings = plugin.LoadPluginSettings<RawgMetadataSettings>();
+            if (savedSettings != null)
             {
-                LoadValues(settings);
+                RestoreSettings(savedSettings);
             }
 
         }
 
         public void BeginEdit()
         {
-            editingClone = this.GetClone();
+            _editingClone = new RawgMetadataSettings(_plugin);
         }
 
         public void EndEdit()
         {
-            plugin.SavePluginSettings(this);
+            _plugin.SavePluginSettings(this);
         }
 
         public void CancelEdit()
         {
-            LoadValues(editingClone);
+            RestoreSettings(_editingClone);
         }
 
         public bool VerifySettings(out List<string> errors)
@@ -99,9 +99,9 @@ namespace RAWGMetadata
             return true;
         }
 
-        private void LoadValues(RawgMetadataSettings source)
+        private void RestoreSettings(RawgMetadataSettings source)
         {
-            source.CopyProperties(this, false, null, true);
+            
         }
     }
 }
