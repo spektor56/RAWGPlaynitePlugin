@@ -17,3 +17,5 @@ A plugin for [Playnite](https://playnite.link/) which provides metadata from [RA
 # Installation
 
 Download the `.pext` file in the [Releases](https://github.com/spektor56/RAWGPlaynitePlugin/releases) section. Run the file or [follow these instructions](https://github.com/JosefNemec/Playnite/wiki/Installing-scripts-and-plugins) to install the plugin.
+
+<a href="https://www.buymeacoffee.com/spektor56"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=spektor56&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
