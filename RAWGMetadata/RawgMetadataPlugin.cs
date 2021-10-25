@@ -68,6 +68,10 @@ namespace RAWGMetadata
         public RawgMetadataPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
         {
             Settings = new RawgMetadataSettings(this);
+            Properties = new MetadataPluginProperties
+            {
+                HasSettings = false
+            };
             PlatformList = Settings.PlatformList;
             Task.Run(() => {
                 try
