@@ -47,7 +47,7 @@ namespace RAWGMetadata
             { "Nintendo Switch","Nintendo Switch"},
             { "Nintendo Wii","Wii"},
             { "Nintendo Wii U","Wii U"},
-            { "PC","PC"},
+            { "PC (Windows)","PC"},
             { "Sega 32X","SEGA 32X"},
             { "Sega CD","SEGA CD"},
             { "Sega Dreamcast","Dreamcast"},
@@ -93,41 +93,6 @@ namespace RAWGMetadata
         public override UserControl GetSettingsView(bool firstRunView)
         {
             return new RawgMetadataSettingsView(this);
-        }
-
-        public override IEnumerable<ExtensionFunction> GetFunctions()
-        {
-            return base.GetFunctions();
-        }
-
-        public override void OnGameStarting(Game game)
-        {
-            base.OnGameStarting(game);
-        }
-
-        public override void OnGameStarted(Game game)
-        {
-            base.OnGameStarted(game);
-        }
-
-        public override void OnGameStopped(Game game, long ellapsedSeconds)
-        {
-            base.OnGameStopped(game, ellapsedSeconds);
-        }
-
-        public override void OnGameInstalled(Game game)
-        {
-            base.OnGameInstalled(game);
-        }
-
-        public override void OnGameUninstalled(Game game)
-        {
-            base.OnGameUninstalled(game);
-        }
-
-        public override void OnApplicationStarted()
-        {
-            base.OnApplicationStarted();
         }
 
         public override Guid Id => Guid.Parse("000001D9-DBD1-46C6-B5D0-B1BA557D10E4");
