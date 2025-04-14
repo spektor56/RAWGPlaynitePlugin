@@ -1,5 +1,4 @@
 ﻿using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Rawg.Api;
@@ -45,7 +44,16 @@ namespace RAWGMetadata
                 _initialized = true;
 
                 string platformId = null;
-                var platform = _options.GameData.Platform.Name;
+                var platform = string.Empty;
+                if (_options.GameData.Platforms != null && _options.GameData.Platforms.Count >= 1)
+                {
+                    platform = _options.GameData.Platforms[0].Name;
+                }
+                else
+                {
+                    return;
+                }
+                
                 if (_plugin.PlatformTranslationTable.ContainsKey(platform))
                 {
                     platform = _plugin.PlatformTranslationTable[platform];
@@ -88,8 +96,8 @@ namespace RAWGMetadata
                 }
             }
         }
-        
-        public override string GetName()
+
+        public override string GetName(GetMetadataFieldArgs args)
         {
             GetGame();
 
@@ -101,10 +109,10 @@ namespace RAWGMetadata
                 }
             }
 
-            return base.GetName();
+            return base.GetName(args);
         }
-        
-        public override List<string> GetGenres()
+
+        public override IEnumerable<MetadataProperty> GetGenres(GetMetadataFieldArgs args)
         {
             GetGameInfo();
 
@@ -112,15 +120,15 @@ namespace RAWGMetadata
             {
                 if (_gameInfo.Genres != null)
                 {
-                    return _gameInfo.Genres.Select(genre => genre.Name).ToList();
+                    return _gameInfo.Genres.Select(genre => new MetadataNameProperty(genre.Name)).ToList();
                 }
             }
 
-            return base.GetGenres();
+            return base.GetGenres(args);
         }
-        
-        
-        public override DateTime? GetReleaseDate()
+
+
+        public override ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)
         {
             GetGame();
             
@@ -128,14 +136,19 @@ namespace RAWGMetadata
             {
                 if (_game.Released != null)
                 {
-                    return _game.Released;
+                    return new ReleaseDate
+                    (
+                        _game.Released.Value.Year,
+                        _game.Released.Value.Month,
+                        _game.Released.Value.Day
+                    );
                 }
             }
 
-            return base.GetReleaseDate();
+            return base.GetReleaseDate(args);
         }
-        
-        public override List<string> GetDevelopers()
+
+        public override IEnumerable<MetadataProperty> GetDevelopers(GetMetadataFieldArgs args)
         {
             GetGameInfo();
 
@@ -143,14 +156,14 @@ namespace RAWGMetadata
             {
                 if (_gameInfo.Developers != null)
                 {
-                    return _gameInfo.Developers.Select(developer => developer.Name).ToList();
+                    return _gameInfo.Developers.Select(developer => new MetadataNameProperty(developer.Name)).ToList();
                 }
             }
 
-            return base.GetDevelopers();
+            return base.GetDevelopers(args);
         }
 
-        public override List<string> GetPublishers()
+        public override IEnumerable<MetadataProperty> GetPublishers(GetMetadataFieldArgs args)
         {
             GetGameInfo();
 
@@ -158,15 +171,15 @@ namespace RAWGMetadata
             {
                 if (_gameInfo.Publishers != null)
                 {
-                    return _gameInfo.Publishers.Select(publisher => publisher.Name).ToList();
+                    return _gameInfo.Publishers.Select(publisher => new MetadataNameProperty(publisher.Name)).ToList();
                 }
             }
 
-            return base.GetPublishers();
+            return base.GetPublishers(args);
         }
-        
 
-        public override string GetDescription()
+
+        public override string GetDescription(GetMetadataFieldArgs args)
         {
             GetGameInfo();
             
@@ -178,10 +191,10 @@ namespace RAWGMetadata
                 }
             }
 
-            return base.GetDescription();
+            return base.GetDescription(args);
         }
-        
-        public override int? GetCommunityScore()
+
+        public override int? GetCommunityScore(GetMetadataFieldArgs args)
         {
             GetGame();
 
@@ -193,10 +206,10 @@ namespace RAWGMetadata
                 }
             }
 
-            return base.GetCommunityScore();
+            return base.GetCommunityScore(args);
         }
-        
-        public override MetadataFile GetCoverImage()
+
+        public override MetadataFile GetCoverImage(GetMetadataFieldArgs args)
         {
             /*
             GetGame();
@@ -209,10 +222,10 @@ namespace RAWGMetadata
                 }
             }
             */
-            return base.GetCoverImage();
+            return base.GetCoverImage(args);
         }
         
-        public override MetadataFile GetBackgroundImage()
+        public override MetadataFile GetBackgroundImage(GetMetadataFieldArgs args)
         {
             GetGame();
 
@@ -224,10 +237,10 @@ namespace RAWGMetadata
                 }
             }
 
-            return base.GetBackgroundImage();
+            return base.GetBackgroundImage(args);
         }
-        
-        public override List<Link> GetLinks()
+
+        public override IEnumerable<Link> GetLinks(GetMetadataFieldArgs args)
         {
             GetGameInfo();
 
@@ -256,10 +269,10 @@ namespace RAWGMetadata
                 }
             }
 
-            return base.GetLinks();
+            return base.GetLinks(args);
         }
 
-        public override MetadataFile GetIcon()
+        public override MetadataFile GetIcon(GetMetadataFieldArgs args)
         {
             /*
             using (MemoryStream ms = new MemoryStream())
@@ -269,10 +282,10 @@ namespace RAWGMetadata
             }
             */
 
-            return base.GetIcon();
+            return base.GetIcon(args);
         }
         
-        public override int? GetCriticScore()
+        public override int? GetCriticScore(GetMetadataFieldArgs args)
         {
             GetGame();
 
@@ -284,10 +297,10 @@ namespace RAWGMetadata
                 }
             }
 
-            return base.GetCriticScore();
+            return base.GetCriticScore(args);
         }
-        
-        public override List<string> GetTags()
+
+        public override IEnumerable<MetadataProperty> GetTags(GetMetadataFieldArgs args)
         {
             GetGameInfo();
 
@@ -295,11 +308,11 @@ namespace RAWGMetadata
             {
                 if (_gameInfo.Tags != null)
                 {
-                    return _gameInfo.Tags.Select(tag => tag.Name).ToList();
+                    return _gameInfo.Tags.Select(tag => new MetadataNameProperty(tag.Name)).ToList();
                 }
             }
 
-            return base.GetTags();
+            return base.GetTags(args);
         }
         
 
